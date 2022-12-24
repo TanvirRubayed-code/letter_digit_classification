@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Letter Digit Recognition</string>
+    <!-- to toggle the open close button of the navigation drawer -->
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string name="no_internet">No Internet Connection found \n Check your connection</string>
+</resources>
+
