@@ -17,15 +17,27 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,13 +47,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     NavigationView navigationView ;
     CardView Cardview1 , CardView2 ;
 
+    TextView drawerName, drawerUsername ;
+
 
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
 
 
     private BroadcastReceiver broadcastReceiver;
-
 
 
     @SuppressLint("MissingInflatedId")
@@ -57,11 +71,54 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Cardview1 = findViewById(R.id.cardview_1);
 
 
+
+
+//--------------------to set name and username into header --------------------
+
+        NavigationView navView = findViewById(R.id.nav_view);
+        View header = navView.getHeaderView(0);
+        drawerName = header.findViewById(R.id.drawer_name);
+        drawerUsername = header.findViewById(R.id.drawer_username);
+
+
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
 
-        //         -----------------Internet connection check and show alert dialog ----------
+
+        //-------------- read name and user name from database ------------
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(user != null ) {
+            String uid = user.getUid();
+            HashMap<String,String> userDetails = new HashMap<String,String>();
+//            drawerName.setText(uid);
+            mDatabase.child("users").child(uid).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (task.isSuccessful()) {
+
+                        for (DataSnapshot data : task.getResult().getChildren()){
+                            userDetails.put(data.getKey(),(String) data.getValue());
+                        }
+                        drawerName.setText(""+userDetails.get("name"));
+                        drawerUsername.setText(userDetails.get("username"));
+
+                    }
+                }
+            });
+
+
+
+        }
+
+
+
+
+
+        //         -----------------Internet connection check a            drawerName.setText(name);nd show alert dialog ----------
 
         broadcastReceiver = new NetworkBroadcast();
         registerReceiver(broadcastReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
@@ -137,7 +194,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if(view.getId()==R.id.cardview_1){
-            Toast.makeText(this, "Card view  1 clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(HomeActivity.this, ClassifyDigit.class);
+            startActivity(intent);
         }
     }
 }

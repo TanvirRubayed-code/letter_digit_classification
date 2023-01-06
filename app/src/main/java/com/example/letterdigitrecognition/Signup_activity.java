@@ -32,6 +32,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -261,7 +262,9 @@ public class Signup_activity extends AppCompatActivity {
                         CreateAccount.setVisibility(View.VISIBLE);
 
                         if(task.isSuccessful()){
-                            uploadUserData();
+
+                            FirebaseUser user = auth.getCurrentUser();
+                            uploadUserData(String.valueOf(user.getUid()));
                         }
                         else {
                             Toast.makeText(Signup_activity.this, "Error: "+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -278,7 +281,7 @@ public class Signup_activity extends AppCompatActivity {
 
     }
 
-    void uploadUserData() {
+    void uploadUserData(String userID) {
 
 
         HashMap<String, String > user = new HashMap<>();
@@ -286,7 +289,7 @@ public class Signup_activity extends AppCompatActivity {
         user.put("username",username);
         user.put("email",email);
 
-        database.child("users").child(username).setValue(user)
+        database.child("users").child(userID).setValue(user)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
 
                     @Override

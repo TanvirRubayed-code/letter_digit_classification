@@ -68,27 +68,27 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginLeft="16dp"
                 app:cardElevation="8dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="#FFF59D"
                 app:cardCornerRadius="8dp"
                 >
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
+                    android:layout_margin="10dp"
                     android:gravity="center"
-                    android:layout_margin="16dp"
                     android:layout_gravity="center_vertical|center_horizontal"
                     >
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/person"
+                        android:src="@drawable/machinelearning"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Person"
+                        android:text="Classify Model"
                         android:textSize="13sp"
                         android:textColor = "?android:textColorPrimary"
                         android:textStyle="bold"
@@ -107,28 +107,28 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginLeft="16dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="#E8EAF6"
                 app:cardElevation="8dp"
                 app:cardCornerRadius="8dp"
                 >
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_margin="16dp"
+                    android:layout_margin="10dp"
                     android:layout_gravity="center_vertical|center_horizontal"
                     >
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/person"
+                        android:src="@drawable/web"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Person"
+                        android:text="Web Example"
                         android:textSize="13sp"
                         android:textColor="@color/black"
                         android:textStyle="bold"
@@ -147,27 +147,27 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginLeft="16dp"
                 app:cardElevation="8dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="#2AFAE5"
                 app:cardCornerRadius="8dp"
                 >
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_margin="16dp"
+                    android:layout_margin="10dp"
                     android:layout_gravity="center_vertical|center_horizontal"
                     >
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/person"
+                        android:src="@drawable/embedded"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Person"
+                        android:text="Embedded Functions"
                         android:textSize="13sp"
                         android:textColor="@color/black"
                         android:textStyle="bold"

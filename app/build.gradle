@@ -29,7 +29,12 @@ android {
     }
     buildFeatures {
         viewBinding true
+        mlModelBinding true
     }
+    aaptOptions {
+        noCompress "tflite"
+    }
+
 }
 
 dependencies {
@@ -47,6 +52,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:24.4.1'
     implementation 'com.google.firebase:firebase-database:20.1.0'
     implementation 'com.google.firebase:firebase-auth'
+
+    implementation 'com.github.DonghanX:Draw:v1.0.3'
+    implementation 'org.tensorflow:tensorflow-lite:2.5.0'
+    implementation 'com.google.android.gms:play-services-tasks:18.0.2'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.1.0'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
 
 
     testImplementation 'junit:junit:4.13.2'
