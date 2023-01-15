@@ -1,4 +1,4 @@
-package com.example.letterdigitrecognition;
+package com.example.letterdigitrecognition.java;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

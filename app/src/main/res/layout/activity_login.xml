@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#192841"
-    tools:context=".login_activity">
+    tools:context=".java.login_activity">
 
 
     <com.github.ybq.android.spinkit.SpinKitView

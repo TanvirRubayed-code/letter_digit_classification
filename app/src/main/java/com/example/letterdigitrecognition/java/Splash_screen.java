@@ -1,4 +1,4 @@
-package com.example.letterdigitrecognition;
+package com.example.letterdigitrecognition.java;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+
+import com.example.letterdigitrecognition.R;
 
 public class Splash_screen extends AppCompatActivity {
 

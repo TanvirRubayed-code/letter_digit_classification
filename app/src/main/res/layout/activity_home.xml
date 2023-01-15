@@ -7,7 +7,7 @@
     android:id="@+id/drawer_layout"
     android:background="@color/statusbar"
     tools:ignore="HardcodedText"
-    tools:context=".HomeActivity">
+    tools:context=".java.HomeActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"

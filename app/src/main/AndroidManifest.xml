@@ -16,14 +16,14 @@
         android:theme="@style/Theme.LetterDigitRecognition"
         tools:targetApi="31">
         <activity
-            android:name=".ClassifyDigit"
+            android:name=".kotlin.ClassifyDigitActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Splash_screen"
+            android:name=".java.Splash_screen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,21 +36,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name=".java.HomeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Signup_activity"
+            android:name=".java.Signup_activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".login_activity"
+            android:name=".java.login_activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -58,7 +58,7 @@
         </activity>
 
         <receiver
-            android:name=".NetworkBroadcast"
+            android:name=".java.NetworkBroadcast"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />

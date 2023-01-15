@@ -5,34 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ClassifyDigit">
+    tools:context=".kotlin.ClassifyDigitActivity">
 
-    <com.redhoodhan.draw.DrawView
-        android:id="@+id/draw_view_id"
+    <com.divyanshu.draw.widget.DrawView
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:background="@color/white"
-        app:defaultBrushColor="@color/black"
+        android:id="@+id/draw_view"
+
         />
 
     <TextView
         android:id="@+id/prediction_text_view"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:textSize="22sp"
         android:text="Please draw a digit"
         android:textColor="@color/white"
         android:textAlignment="center"
         />
 
-    <Button
-        android:id="@+id/clear_button"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Clear" />
+        android:gravity="center"
+        >
+        <Button
+            android:id="@+id/clear_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:text="Clear" />
 
 
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

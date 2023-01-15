@@ -6,7 +6,7 @@
     android:background="@color/statusbar"
     android:padding="20dp"
     android:orientation="horizontal"
-    tools:context=".HomeActivity">
+    tools:context=".java.HomeActivity">
 
     <View
         android:layout_width="4dp"

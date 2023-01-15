@@ -1,16 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
     namespace 'com.example.letterdigitrecognition'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.letterdigitrecognition"
         minSdk 23
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -48,21 +49,26 @@ dependencies {
 
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
+
     implementation platform('com.google.firebase:firebase-bom:31.1.1')
     implementation 'com.google.firebase:firebase-firestore:24.4.1'
     implementation 'com.google.firebase:firebase-database:20.1.0'
     implementation 'com.google.firebase:firebase-auth'
 
-    implementation 'com.github.DonghanX:Draw:v1.0.3'
     implementation 'org.tensorflow:tensorflow-lite:2.5.0'
     implementation 'com.google.android.gms:play-services-tasks:18.0.2'
     implementation 'org.tensorflow:tensorflow-lite-support:0.1.0'
     implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
+    implementation 'androidx.core:core-ktx:+'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    implementation 'com.github.divyanshub024:AndroidDraw:v0.1'
+
 
 
 }
