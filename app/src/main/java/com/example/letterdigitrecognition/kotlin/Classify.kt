@@ -70,8 +70,8 @@ class Classify(private val context: Context) {
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startoffset, declaredlength)
     }
 
-    fun classifyAsyn(bitmap: Bitmap):Task<String> {
-        val task = TaskCompletionSource<String>()
+    fun classifyAsyn(bitmap: Bitmap):Task<Int> {
+        val task = TaskCompletionSource<Int>()
         executorService.execute {
             val result = classify(bitmap)
             task.setResult(result)
@@ -97,7 +97,7 @@ class Classify(private val context: Context) {
         return byteBuffer
     }
 
-    private fun classify(bitmap: Bitmap):String {
+    private fun classify(bitmap: Bitmap): Int {
         check(isInitialized){"TF lite is not initialized"}
 
         val resizeImage = Bitmap.createScaledBitmap(
@@ -112,10 +112,16 @@ class Classify(private val context: Context) {
 
         val result = output[0]
 
-        val maxindex = result.indices.maxBy { result[it] } ?: -1
+        val maxindex = result.indices.maxBy { result[it] }
 
-        val resultString = "Prediction result %d\n Confidence :%2f".format(maxindex,result[maxindex])
-        return resultString
+//        val resultString = "Prediction result %d\n Confidence :%2f".format(maxindex,result[maxindex])
+//        return resultString
+//
+
+
+        val resultInt = maxindex
+        return resultInt.toInt()
+
     }
 
     fun close() {
@@ -127,7 +133,7 @@ class Classify(private val context: Context) {
     companion object {
         private const val FLOAT_TYPE = 4
         private const val PIXEL_VALUE = 1
-        private const val OUTPUT_CLASS = 10
+        private const val OUTPUT_CLASS = 47
     }
 
 

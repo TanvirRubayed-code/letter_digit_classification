@@ -32,21 +32,35 @@
                 android:elevation="0dp" />
 
 
-
-
-
-
-
-
-
-
         </com.google.android.material.appbar.AppBarLayout>
 
 
         <!-- Screen content -->
         <!-- Use app:layout_behavior="@string/appbar_scrolling_view_behavior" to fit below top app bar -->
 
+
+        <RelativeLayout
+            android:id="@+id/progressbar_relative_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/login_progress_home"
+                style="@style/SpinKitView.Large.ThreeBounce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:background="@color/statusbar"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                app:SpinKit_Color="@color/white" />
+        </RelativeLayout>
+
         <GridLayout
+            android:id="@+id/home_grid_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="8"
@@ -58,7 +72,7 @@
             android:padding="14dp"
             >
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardview_1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -96,10 +110,11 @@
                         android:layout_gravity="center_horizontal"
                         />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/location_card"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_columnWeight="1"
@@ -107,7 +122,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginLeft="16dp"
-                android:backgroundTint="#E8EAF6"
+                android:backgroundTint="#03A9F4"
                 app:cardElevation="8dp"
                 app:cardCornerRadius="8dp"
                 >
@@ -123,22 +138,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="140dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/web"
+                        android:src="@drawable/current_location_image"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Web Example"
+                        android:text="Current Location"
                         android:textSize="13sp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textAlignment="center"
                         android:layout_gravity="center_horizontal"
                         />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/embedded_functions"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_columnWeight="1"
@@ -175,10 +191,11 @@
                         android:layout_gravity="center_horizontal"
                         />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/social_media_cardview"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_columnWeight="1"
@@ -187,38 +204,37 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginLeft="16dp"
                 app:cardElevation="8dp"
-                android:backgroundTint="@color/white"
-
+                android:backgroundTint="#C2185B"
                 app:cardCornerRadius="8dp"
                 >
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_margin="16dp"
+                    android:layout_margin="10dp"
                     android:layout_gravity="center_vertical|center_horizontal"
                     >
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/person"
+                        android:src="@drawable/danger"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Person"
+                        android:text="Social Media"
                         android:textSize="13sp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textAlignment="center"
                         android:layout_gravity="center_horizontal"
                         />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_columnWeight="1"
@@ -228,47 +244,6 @@
                 android:layout_marginLeft="16dp"
                 android:backgroundTint="@color/white"
 
-                app:cardElevation="8dp"
-                app:cardCornerRadius="8dp"
-                >
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_margin="16dp"
-                    android:layout_gravity="center_vertical|center_horizontal"
-                    >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/person"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Person"
-                        android:textSize="13sp"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textAlignment="center"
-                        android:layout_gravity="center_horizontal"
-                        />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
-                android:layout_marginRight="16dp"
-                android:backgroundTint="@color/white"
-
-                android:layout_marginLeft="16dp"
                 app:cardElevation="8dp"
                 app:cardCornerRadius="8dp"
                 >
@@ -297,7 +272,48 @@
                         android:layout_gravity="center_horizontal"
                         />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_marginBottom="16dp"
+                android:layout_marginRight="16dp"
+                android:backgroundTint="@color/white"
+
+                android:layout_marginLeft="16dp"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_margin="16dp"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/person"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Person"
+                        android:textSize="13sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:layout_gravity="center_horizontal"
+                        />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
 
 

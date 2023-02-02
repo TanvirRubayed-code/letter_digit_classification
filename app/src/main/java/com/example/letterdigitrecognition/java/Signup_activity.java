@@ -98,7 +98,6 @@ public class Signup_activity extends AppCompatActivity {
             public void onClick(View view) {
                 validateData();
 
-
             }
             
         });
@@ -206,9 +205,6 @@ public class Signup_activity extends AppCompatActivity {
     private void openMain() {
         startActivity(new Intent(this, HomeActivity.class));
         finish();
-
-
-
 
     }
 

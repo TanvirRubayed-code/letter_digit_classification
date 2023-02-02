@@ -12,12 +12,13 @@ import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,9 +41,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public ActionBarDrawerToggle actionBarDrawerToggle;
     MaterialToolbar materialToolbar;
     NavigationView navigationView ;
-    CardView Cardview1 , CardView2 ;
+    CardView Cardview1 , CurrentLocation ,socialMediaCardView, embeddedFunctions ;
 
     TextView drawerName, drawerUsername ;
+    ProgressBar progressBar ;
+    RelativeLayout relativeLayout;
 
 
     private FirebaseAuth mAuth;
@@ -64,7 +67,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         Cardview1 = findViewById(R.id.cardview_1);
+        socialMediaCardView = findViewById(R.id.social_media_cardview);
+        embeddedFunctions = findViewById(R.id.embedded_functions);
+        CurrentLocation = findViewById(R.id.location_card);
 
+        progressBar = findViewById(R.id.login_progress_home);
+        relativeLayout = findViewById(R.id.progressbar_relative_layout);
 
 
 
@@ -87,6 +95,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if(user != null ) {
+            progressBar.setVisibility(View.VISIBLE);
+            relativeLayout.bringToFront();
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             String uid = user.getUid();
             HashMap<String,String> userDetails = new HashMap<String,String>();
 //            drawerName.setText(uid);
@@ -94,6 +105,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
                     if (task.isSuccessful()) {
+                        progressBar.setVisibility(View.INVISIBLE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
                         for (DataSnapshot data : task.getResult().getChildren()){
                             userDetails.put(data.getKey(),(String) data.getValue());
@@ -138,6 +151,21 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     finish();
                     Toast.makeText(HomeActivity.this, "Signed out successfully", Toast.LENGTH_SHORT).show();
                 }
+                if(id==R.id.rate_us){
+                    Intent intent = new Intent(getApplicationContext(), com.example.letterdigitrecognition.java.RatingActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                if(id==R.id.my_profile){
+                    Intent intent = new Intent(getApplicationContext(), com.example.letterdigitrecognition.java.MyProfileActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                if(id==R.id.all_ratings){
+                    Intent intent = new Intent(getApplicationContext(), com.example.letterdigitrecognition.java.AllUsersRatings.class);
+                    startActivity(intent);
+                    finish();
+                }
                 return false;
             }
         });
@@ -151,7 +179,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         });
         
         Cardview1.setOnClickListener(this);
-
+        socialMediaCardView.setOnClickListener(this);
+        CurrentLocation.setOnClickListener(this);
+        embeddedFunctions.setOnClickListener(this);
 
         //Change status bar coclor
         Window window = this.getWindow();
@@ -189,5 +219,18 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(HomeActivity.this, com.example.letterdigitrecognition.kotlin.ClassifyDigitActivity.class);
             startActivity(intent);
         }
+        if(view.getId()==R.id.social_media_cardview){
+            Intent intent = new Intent(this, com.example.letterdigitrecognition.java.SocialMedia.class);
+            startActivity(intent);
+        }
+        if(view.getId()==R.id.location_card){
+            Intent intent = new Intent(this, com.example.letterdigitrecognition.java.CurrentLocation.class);
+            startActivity(intent);
+        }
+        if(view.getId()==R.id.embedded_functions){
+            Intent intent = new Intent(this, com.example.letterdigitrecognition.java.EmbeddedFunctions.class);
+            startActivity(intent);
+        }
+
     }
 }

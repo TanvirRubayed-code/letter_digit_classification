@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".java.SocialMedia"
+    android:orientation="vertical">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/statusbar"
+            style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"
+            android:fitsSystemWindows="true"
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="Create post"
+                style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
+                android:background="@android:color/transparent"
+                android:elevation="0dp" />
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical"
+               android:background="@color/statusbar"
+               >
+               <EditText
+                   android:id="@+id/editTextTextMultiLine2"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:minHeight="120dp"
+                   android:ems="10"
+                   android:layout_marginLeft="5dp"
+                   android:layout_marginRight="5dp"
+                   android:hint="What's on your mind?"
+                   android:padding="4dp"
+                   android:textColorHint="@color/lightgray"
+                   android:background="#2C2C2C"
+                   android:textColor="@color/white"
+                   android:gravity="start|top"
+                   android:inputType="textMultiLine"
+                   tools:ignore="MissingConstraints" />
+
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="0dp"
+                   >
+
+                   <Button
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_alignParentEnd="true"
+                       android:layout_marginStart="0dp"
+                       android:layout_marginTop="0dp"
+                       android:layout_marginEnd="5dp"
+                       android:layout_marginBottom="0dp"
+                       android:backgroundTint="#1D3359"
+                       android:text="Post"
+                       android:textColor="@color/white" />
+               </RelativeLayout>
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:padding="8dp"
+                   android:textColor="@color/lightgray"
+                   android:elevation="2dp"
+                   android:layout_marginLeft="5dp"
+                   android:layout_marginRight="5dp"
+                   android:background="#2C2C2C"
+                   android:text="All users posts"
+
+                   />
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/all_post_recyclerview"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:overScrollMode="never"
+                   android:scrollbars="none"
+                   tools:ignore="MissingConstraints" />
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

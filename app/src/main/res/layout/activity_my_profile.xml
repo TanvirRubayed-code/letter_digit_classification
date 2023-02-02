@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/statusbar"
+    tools:context=".java.MyProfileActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/statusbar"
+        style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Profile"
+            style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
+            android:background="@android:color/transparent"
+            android:elevation="0dp" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:backgroundTint="#142135"
+                android:orientation="vertical"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                >
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    >
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/circleImageView"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="center"
+                        android:src="@drawable/propic"
+                        app:civ_border_color="#FF000000"
+                        app:civ_border_width="1dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.google.android.material.card.MaterialCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="@dimen/cardview_default_elevation"
+                    app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
+                    app:layout_constraintEnd_toEndOf="@+id/circleImageView"
+                    tools:ignore="MissingConstraints"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="4dp"
+                        android:src="@drawable/edit_icon"
+                        tools:ignore="MissingConstraints" />
+                </com.google.android.material.card.MaterialCardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:text="Tanvir Rubayed Tauhid"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="#0F1827"
+            android:drawableLeft="@drawable/person_white"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:drawablePadding="10dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Birthday"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="#0F1827"
+            android:drawableLeft="@drawable/calander"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="10dp"
+            android:inputType="datetime"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="01740214137"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="#0F1827"
+            android:drawableLeft="@drawable/phone_icon"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="10dp"
+            android:inputType="number"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="tauhid@gmail.com"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="#0F1827"
+            android:drawableLeft="@drawable/email_white"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="10dp"
+            android:inputType="textEmailAddress"
+            />
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

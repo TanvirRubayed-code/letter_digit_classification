@@ -11,5 +11,6 @@
     <color name="buttoncolor">#0091EA</color>
     <color name="statusbar">#192841</color>
     <color name="splashstatus">#FDFDFD</color>
+    <color name="rating_background">#E6E6E6</color>
 
 </resources>

@@ -4,13 +4,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/home"
+            android:icon="@drawable/home"
             android:title="Home" />
         <item
-            android:id="@+id/contact"
-            android:title="Contact" />
-        <item
-            android:id="@+id/gallery"
-            android:title="Gallery" />
+            android:id="@+id/my_profile"
+            android:icon="@drawable/person_outline"
+            android:title="My Profile" />
 
     </group>
     <item android:title="Apps">
@@ -18,10 +17,17 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/share"
+                    android:icon="@drawable/share"
                     android:title="Share" />
                 <item
                     android:id="@+id/rate_us"
+                    android:icon="@drawable/rating_star"
                     android:title="Rate us" />
+
+                <item
+                    android:id="@+id/all_ratings"
+                    android:icon="@drawable/rating_review"
+                    android:title="All ratings" />
             </group>
         </menu>
     </item>
@@ -29,6 +35,7 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item android:id="@+id/logoutmenu"
+                    android:icon="@drawable/logout_icon"
                     android:title="Logout" />
             </group>
         </menu>
