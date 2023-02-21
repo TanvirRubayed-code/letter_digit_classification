@@ -16,10 +16,12 @@
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
+            android:id="@+id/profile_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="Profile"
+            app:menu="@menu/profile_menu"
+            app:titleTextColor="@color/white"
             style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
             android:background="@android:color/transparent"
             android:elevation="0dp" />
@@ -40,9 +42,10 @@
                 android:layout_marginRight="20dp"
                 >
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/profileImage_const_layout"
                     >
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -52,8 +55,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignParentEnd="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/propic"
-                        app:civ_border_color="#FF000000"
+                        app:civ_border_color="@color/white"
                         app:civ_border_width="1dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -84,10 +86,10 @@
             </com.google.android.material.card.MaterialCardView>
 
         <EditText
+            android:id="@+id/profile_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
-            android:text="Tanvir Rubayed Tauhid"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:background="#0F1827"
@@ -97,25 +99,47 @@
             android:drawablePadding="10dp"
             />
 
-        <EditText
+        <TextView
+            android:id="@+id/profile_uname"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="#0F1827"
+            android:drawableLeft="@drawable/person_white"
+            android:paddingLeft="10dp"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            tools:ignore="RtlCompat" />
+
+        <TextView
+            android:id="@+id/birthday_datepicker"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Birthday"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:background="#0F1827"
+            android:hint="1-1-2000"
             android:drawableLeft="@drawable/calander"
             android:paddingLeft="10dp"
-            android:textColor="@color/white"
             android:drawablePadding="10dp"
             android:layout_marginTop="10dp"
-            android:inputType="datetime"
-            />
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            tools:ignore="RtlCompat" />
 
         <EditText
+            android:id="@+id/phone_number"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="01740214137"
+            android:hint="01*********"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:background="#0F1827"
@@ -127,20 +151,67 @@
             android:inputType="number"
             />
 
-        <EditText
+
+        <TextView
+            android:id="@+id/profile_email"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="tauhid@gmail.com"
+            android:text="Birthday"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:background="#0F1827"
-            android:drawableLeft="@drawable/email_white"
+            android:hint="1-1-2000"
+            android:drawableLeft="@drawable/calander"
             android:paddingLeft="10dp"
-            android:textColor="@color/white"
             android:drawablePadding="10dp"
             android:layout_marginTop="10dp"
-            android:inputType="textEmailAddress"
-            />
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            tools:ignore="RtlCompat" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:hintTextColor="@color/white"
+            android:layout_marginTop="7dp"
+
+            android:hint="District"
+
+            >
+            <AutoCompleteTextView
+                android:id="@+id/district_auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#0F1827"
+                android:inputType="none"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:hintTextColor="@color/white"
+            android:layout_marginTop="7dp"
+
+            android:hint="Upazila"
+
+            >
+            <AutoCompleteTextView
+                android:id="@+id/upazila_auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#0F1827"
+                android:inputType="none"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
 

@@ -52,6 +52,7 @@ public class Signup_activity extends AppCompatActivity {
     LinearLayout CreateAccount ;
 
     private String name, username, email, password, confirmpassword;
+    private Boolean signUpFlag=false;
 
     private FirebaseAuth auth;
 
@@ -93,15 +94,6 @@ public class Signup_activity extends AppCompatActivity {
 
 
 
-        SignupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                validateData();
-
-            }
-            
-        });
-
         signUpUsername.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -125,6 +117,10 @@ public class Signup_activity extends AppCompatActivity {
                         if(snapshot.exists()){
                             signUpUsername.setError("Username is not available");
                             signUpUsername.requestFocus();
+                            signUpFlag=true;
+                        }
+                        else{
+                            signUpFlag=false;
                         }
                     }
 
@@ -137,6 +133,21 @@ public class Signup_activity extends AppCompatActivity {
             }
 
         });
+
+        SignupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!signUpFlag){
+                    validateData();
+                }else {
+                    Toast.makeText(Signup_activity.this, "Correct all fields.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        });
+
+
+
 
 
 
@@ -285,6 +296,11 @@ public class Signup_activity extends AppCompatActivity {
         user.put("name",name);
         user.put("username",username);
         user.put("email",email);
+        user.put("DOB","");
+        user.put("phone","");
+        user.put("district","");
+        user.put("upazila","");
+        user.put("propic","");
 
         database.child("users").child(userID).setValue(user)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -74,6 +74,14 @@ public class RatingActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(RatingActivity.this, HomeActivity.class);
+        startActivity(i);
+        finish();
+    }
+
     private void setRatingTodatabase(String rating) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();

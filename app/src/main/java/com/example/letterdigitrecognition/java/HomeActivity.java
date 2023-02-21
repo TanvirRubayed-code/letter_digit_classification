@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,8 +33,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,6 +47,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     NavigationView navigationView ;
     CardView Cardview1 , CurrentLocation ,socialMediaCardView, embeddedFunctions ;
 
+    ImageView drawerProfileImage ;
+//    CircleImageView drawerProfileImage ;
     TextView drawerName, drawerUsername ;
     ProgressBar progressBar ;
     RelativeLayout relativeLayout;
@@ -71,6 +77,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         embeddedFunctions = findViewById(R.id.embedded_functions);
         CurrentLocation = findViewById(R.id.location_card);
 
+
         progressBar = findViewById(R.id.login_progress_home);
         relativeLayout = findViewById(R.id.progressbar_relative_layout);
 
@@ -82,7 +89,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         View header = navView.getHeaderView(0);
         drawerName = header.findViewById(R.id.drawer_name);
         drawerUsername = header.findViewById(R.id.drawer_username);
-
+        drawerProfileImage = header.findViewById(R.id.drawer_image);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -105,7 +112,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
                     if (task.isSuccessful()) {
-                        progressBar.setVisibility(View.INVISIBLE);
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
                         for (DataSnapshot data : task.getResult().getChildren()){
@@ -113,6 +119,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                         }
                         drawerName.setText(""+userDetails.get("name"));
                         drawerUsername.setText(userDetails.get("username"));
+                        Picasso.get().load(userDetails.get("propic")).into(drawerProfileImage);
+
+                        progressBar.setVisibility(View.INVISIBLE);
 
                     }
                 }
@@ -145,6 +154,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
+                if(id==R.id.home){
+                    if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                    }
+                }
                 if(id==R.id.logoutmenu){
                     mAuth.signOut();
                     startActivity(new Intent(getApplicationContext(), login_activity.class));
