@@ -263,7 +263,7 @@ public class MyProfileActivity extends AppCompatActivity {
                 }
                 else {
                     for(DataSnapshot list: task.getResult().getChildren()){
-                        upazilaList.add((String) list.getValue());
+                        upazilaList.add(String.valueOf(list.getValue()));
                     }
                 }
             }

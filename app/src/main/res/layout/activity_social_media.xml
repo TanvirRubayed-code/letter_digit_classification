@@ -37,7 +37,7 @@
                android:background="@color/statusbar"
                >
                <EditText
-                   android:id="@+id/editTextTextMultiLine2"
+                   android:id="@+id/create_post_edittext"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:minHeight="120dp"
@@ -60,6 +60,7 @@
                    >
 
                    <Button
+                       android:id="@+id/submit_post_button"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_alignParentEnd="true"

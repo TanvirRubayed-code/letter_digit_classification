@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -29,6 +30,7 @@ import android.widget.Toast;
 import com.example.letterdigitrecognition.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
@@ -39,6 +41,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 
@@ -51,7 +55,7 @@ public class Signup_activity extends AppCompatActivity {
     ProgressBar SignupProgressBar ;
     LinearLayout CreateAccount ;
 
-    private String name, username, email, password, confirmpassword;
+    private String name, username, email, password, confirmpassword, profilePicUrl;
     private Boolean signUpFlag=false;
 
     private FirebaseAuth auth;
@@ -83,6 +87,11 @@ public class Signup_activity extends AppCompatActivity {
 
 
         auth = FirebaseAuth.getInstance();
+
+
+        downloadDefaultProfileURL();
+
+
 
 
 
@@ -148,16 +157,6 @@ public class Signup_activity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
         SignupCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -194,6 +193,7 @@ public class Signup_activity extends AppCompatActivity {
             window.setStatusBarColor(this.getResources().getColor(R.color.statusbar));
         }
     }
+
 
     //    -----------this method is called for unregisteredReceiver of internet connection check --------------
 
@@ -255,6 +255,26 @@ public class Signup_activity extends AppCompatActivity {
         }
     }
 
+    private void downloadDefaultProfileURL() {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        storageRef.child("images/profile_pic.png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+//                updateDatabase.child(uid).child("propic").setValue(uri.toString());
+                profilePicUrl = uri.toString();
+                Toast.makeText(Signup_activity.this, "download successfull", Toast.LENGTH_SHORT).show();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                e.printStackTrace();
+                Toast.makeText(Signup_activity.this, "download failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void createUser() {
 
         SignupProgressBar.setVisibility(View.VISIBLE);
@@ -300,7 +320,7 @@ public class Signup_activity extends AppCompatActivity {
         user.put("phone","");
         user.put("district","");
         user.put("upazila","");
-        user.put("propic","");
+        user.put("propic",profilePicUrl);
 
         database.child("users").child(userID).setValue(user)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

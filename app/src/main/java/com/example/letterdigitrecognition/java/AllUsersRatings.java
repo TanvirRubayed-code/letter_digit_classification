@@ -57,11 +57,11 @@ public class AllUsersRatings extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 collectPhoneNumbers((Map<String,Object>) snapshot.getValue());
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
 
     }

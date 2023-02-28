@@ -22,11 +22,12 @@
             android:layout_marginRight="6dp"
             >
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_post_image"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/person"
                 app:civ_border_width="2dp"
-                app:civ_border_color="#FF000000"
+                app:civ_border_color="#2196F3"
                 />
             <TextView
                 android:id="@+id/users_name"
@@ -65,6 +66,7 @@
             android:layout_marginBottom="10dp"
             >
             <TextView
+                android:id="@+id/like_counter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="23 likes"
