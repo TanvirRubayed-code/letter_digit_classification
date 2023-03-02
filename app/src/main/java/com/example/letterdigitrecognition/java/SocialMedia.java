@@ -15,7 +15,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.letterdigitrecognition.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -42,6 +44,8 @@ public class SocialMedia extends AppCompatActivity {
     
     
     RecyclerView postRV ;
+
+    int counter = 0;
 
 
     DatabaseReference mdatabase = FirebaseDatabase.getInstance().getReference();
@@ -93,6 +97,11 @@ public class SocialMedia extends AppCompatActivity {
                             Toast.makeText(SocialMedia.this, "Post added to database", Toast.LENGTH_SHORT).show();
                         }
                     });
+
+                    HashMap<String, String > likesflag = new HashMap<>();
+                    likesflag.put("likeFlag","0");
+
+                    mdatabase.child("likes").child(postID).child(uid).setValue(likesflag);
 
 
                 }
@@ -179,9 +188,11 @@ public class SocialMedia extends AppCompatActivity {
             HashMap post = (HashMap) allPosts.get(i);
             String userId = (String) post.get("uid");
 
-            allPost.add(new All_post_model(postIds.get(i),(String) post.get("name"), (String) post.get("post"), (String) post.get("imageurl"),  Integer.parseInt(String.valueOf(post.get("likeFlag"))), Integer.parseInt(String.valueOf(post.get("likes")))));
+            allPost.add(new All_post_model(this, uid,postIds.get(i),(String) post.get("name"), (String) post.get("post"), (String) post.get("imageurl"),  Integer.parseInt(String.valueOf(post.get("likeFlag"))), Integer.parseInt(String.valueOf(post.get("likes")))));
 
         }
 
     }
+
+
 }
