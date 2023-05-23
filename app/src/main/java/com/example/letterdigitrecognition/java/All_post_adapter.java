@@ -2,9 +2,11 @@ package com.example.letterdigitrecognition.java;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,8 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class All_post_adapter extends RecyclerView.Adapter<All_post_adapter.viewHolder> {
+
+    int likecounter;
 
 
     private List<All_post_model> posts;
@@ -52,12 +56,13 @@ public class All_post_adapter extends RecyclerView.Adapter<All_post_adapter.view
 
         Context mContext = posts.get(position).getContext();
 
+        String postID = posts.get(position).getPostId();
 
 
 
         // -------- number of likes fetching and counting ------------
 
-        holder.getLikeStatus(mContext, posts.get(position).getPostId(), posts.get(position).getUid());
+        holder.getLikeStatus(mContext,postID, posts.get(position).getUid());
 
 
 
@@ -67,7 +72,15 @@ public class All_post_adapter extends RecyclerView.Adapter<All_post_adapter.view
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "main post "+position, Toast.LENGTH_SHORT).show();
+                singlePostPage(v,name,post,imageUrl,postID);
+
+            }
+        });
+        
+        holder.commentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                singlePostPage(v,name,post,imageUrl,postID);
             }
         });
 
@@ -75,7 +88,8 @@ public class All_post_adapter extends RecyclerView.Adapter<All_post_adapter.view
         holder.likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(posts.get(position).getLikeFlag()==0){
+                int flag  = posts.get(position).getLikeFlag();
+                if(flag==0){
 
                     HashMap<String, String > likesflag = new HashMap<>();
                     likesflag.put("likeFlag","1");
@@ -85,7 +99,7 @@ public class All_post_adapter extends RecyclerView.Adapter<All_post_adapter.view
 
                     updatePostDatabase.child(posts.get(position).getPostId()).child(posts.get(position).getUid()).setValue(likesflag);
                 }
-                else if(posts.get(position).getLikeFlag()==1) {
+                else if(flag==1) {
 
                     HashMap<String, String > likesflag = new HashMap<>();
                     likesflag.put("likeFlag","0");
@@ -102,6 +116,15 @@ public class All_post_adapter extends RecyclerView.Adapter<All_post_adapter.view
 
     }
 
+    private void singlePostPage(View v, String name, String post, String imageUrl, String postID) {
+        Intent intent = new Intent(v.getContext(),PostComments.class);
+        intent.putExtra("username", name);
+        intent.putExtra("main_post", post);
+        intent.putExtra("imageURL", imageUrl);
+        intent.putExtra("postId",postID);
+        v.getContext().startActivity(intent);
+    }
+
     @Override
     public int getItemCount() {
         return posts.size();
@@ -111,7 +134,8 @@ public class All_post_adapter extends RecyclerView.Adapter<All_post_adapter.view
 
         private TextView username,likeCounter;
         private TextView userspost;
-        private ImageView likeButton ;
+        private ImageView likeButton  ;
+        private ImageButton commentButton;
         private CircleImageView postUserImage ;
 
 
@@ -123,14 +147,15 @@ public class All_post_adapter extends RecyclerView.Adapter<All_post_adapter.view
             username = itemView.findViewById(R.id.users_name);
             userspost = itemView.findViewById(R.id.user_post);
             likeButton = itemView.findViewById(R.id.like_button);
+            commentButton = itemView.findViewById(R.id.comment_button);
             postUserImage = itemView.findViewById(R.id.user_post_image);
             likeCounter = itemView.findViewById(R.id.like_counter);
+
         }
 
         public void setData(Context mContext, String name, String post, String imageUrl) {
             username.setText(name);
             userspost.setText(post);
-
             Picasso.get().load(imageUrl).into(postUserImage);
 
 
@@ -141,12 +166,12 @@ public class All_post_adapter extends RecyclerView.Adapter<All_post_adapter.view
             mdatabase.child("likes").child(postId).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    int counter = 0;
+                     likecounter = 0;
 
                     for (DataSnapshot data : snapshot.getChildren()){
                         int checkdata = Integer.parseInt(String.valueOf(data.child("likeFlag").getValue()));
                         if(checkdata==1){
-                            counter = counter + 1;
+                            likecounter = likecounter + 1;
                         }
 
                         if(data.getKey().equals(uid) && data.child("likeFlag").getValue().equals("1")){
@@ -159,7 +184,7 @@ public class All_post_adapter extends RecyclerView.Adapter<All_post_adapter.view
 
                     }
 
-                    likeCounter.setText(counter+" likes");
+                    likeCounter.setText(likecounter+" likes");
                 }
 
                 @Override
