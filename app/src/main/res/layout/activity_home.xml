@@ -235,6 +235,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/gsap_cardview"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_columnWeight="1"
@@ -242,8 +243,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginLeft="16dp"
-                android:backgroundTint="@color/white"
-
+                android:backgroundTint="#FFCC80"
                 app:cardElevation="8dp"
                 app:cardCornerRadius="8dp"
                 >
@@ -256,15 +256,15 @@
                     android:layout_gravity="center_vertical|center_horizontal"
                     >
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/person"
+                        android:src="@drawable/gsaplogo"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Person"
+                        android:text="GSAP &amp; SASS"
                         android:textSize="13sp"
                         android:textColor="@color/black"
                         android:textStyle="bold"

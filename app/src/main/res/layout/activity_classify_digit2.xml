@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="22sp"
-        android:text="Please draw a digit"
+        android:text="Please draw a digit or letter"
         android:textColor="@color/white"
         android:textAlignment="center"
         />

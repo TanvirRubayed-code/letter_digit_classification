@@ -45,7 +45,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public ActionBarDrawerToggle actionBarDrawerToggle;
     MaterialToolbar materialToolbar;
     NavigationView navigationView ;
-    CardView Cardview1 , CurrentLocation ,socialMediaCardView, embeddedFunctions ;
+    CardView Cardview1 , CurrentLocation ,socialMediaCardView, embeddedFunctions, gsapCardView ;
 
     ImageView drawerProfileImage ;
 //    CircleImageView drawerProfileImage ;
@@ -74,6 +74,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         navigationView = findViewById(R.id.nav_view);
         Cardview1 = findViewById(R.id.cardview_1);
         socialMediaCardView = findViewById(R.id.social_media_cardview);
+        gsapCardView = findViewById(R.id.gsap_cardview);
         embeddedFunctions = findViewById(R.id.embedded_functions);
         CurrentLocation = findViewById(R.id.location_card);
 
@@ -194,6 +195,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         
         Cardview1.setOnClickListener(this);
         socialMediaCardView.setOnClickListener(this);
+        gsapCardView.setOnClickListener(this);
         CurrentLocation.setOnClickListener(this);
         embeddedFunctions.setOnClickListener(this);
 
@@ -243,6 +245,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(view.getId()==R.id.embedded_functions){
             Intent intent = new Intent(this, com.example.letterdigitrecognition.java.EmbeddedFunctions.class);
+            startActivity(intent);
+        }if(view.getId()==R.id.gsap_cardview){
+            Intent intent = new Intent(this, com.example.letterdigitrecognition.java.GSAP_Activity.class);
             startActivity(intent);
         }
 
