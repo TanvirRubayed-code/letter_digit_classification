@@ -9,8 +9,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -57,6 +59,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
+    SharedPreferences sharedPreferences ;
+
 
 
     private BroadcastReceiver broadcastReceiver;
@@ -82,6 +86,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         progressBar = findViewById(R.id.login_progress_home);
         relativeLayout = findViewById(R.id.progressbar_relative_layout);
 
+
+
+        sharedPreferences = this.getSharedPreferences("pass", Context.MODE_PRIVATE);
 
 
 //--------------------to set name and username into header --------------------
@@ -161,6 +168,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 if(id==R.id.logoutmenu){
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("savepass", false);
+                    editor.apply();
+
                     mAuth.signOut();
                     startActivity(new Intent(getApplicationContext(), login_activity.class));
                     finish();

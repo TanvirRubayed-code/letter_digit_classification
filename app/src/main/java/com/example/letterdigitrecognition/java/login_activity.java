@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,7 +37,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class login_activity extends AppCompatActivity {
 
-    CheckBox LoginCheckbox ;
+    CheckBox LoginCheckbox, LoginSavePassword ;
     TextInputEditText PasswordLogin, LoginUsername;
     TextView SignUpText;
     Button LoginButton;
@@ -46,6 +48,8 @@ public class login_activity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseFirestore firestore ;
     private FirebaseAuth authcheck = FirebaseAuth.getInstance();
+    SharedPreferences sharedPreferences ;
+
 
 
     private BroadcastReceiver broadcastReceiver;
@@ -56,7 +60,11 @@ public class login_activity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(authcheck.getCurrentUser()!=null){
+
+        sharedPreferences = this.getSharedPreferences("pass", Context.MODE_PRIVATE);
+
+        boolean checkpassbox = sharedPreferences.getBoolean("savepass", false);
+        if(authcheck.getCurrentUser()!=null && checkpassbox){
             openMain();
         }
     }
@@ -71,19 +79,20 @@ public class login_activity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-         LoginCheckbox = findViewById(R.id.login_checkbox);
+//         LoginCheckbox = findViewById(R.id.login_checkbox);
          SignUpText = findViewById(R.id.sign_up_text);
          LoginButton = findViewById(R.id.login_button);
          PasswordLogin = findViewById(R.id.password_login);
          LoginUsername = findViewById(R.id.login_username);
          ProgressBar = findViewById(R.id.loginprogress);
          MyaccountLayout = findViewById(R.id.my_account_layout);
-
+         LoginSavePassword = findViewById(R.id.save_pass_checkbox);
 
 
          firestore = FirebaseFirestore.getInstance();
          mAuth = FirebaseAuth.getInstance();
 
+        sharedPreferences = this.getSharedPreferences("pass", Context.MODE_PRIVATE);
 
 
 //         -----------------Internet connection check and show alert dialog ----------
@@ -103,17 +112,32 @@ public class login_activity extends AppCompatActivity {
 
 
 
-         LoginCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-             @Override
-             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                 if(!LoginCheckbox.isChecked()){
-                     PasswordLogin.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                 }
-                 else {
-                     PasswordLogin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                 }
-             }
-         });
+//         LoginCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//             @Override
+//             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                 if(!LoginCheckbox.isChecked()){
+//                     PasswordLogin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+//                 }
+//                 else {
+//                     PasswordLogin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+//                 }
+//             }
+//         });
+
+        LoginSavePassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                boolean loginsave = true;
+
+                if(isChecked){
+                     SharedPreferences.Editor editor = sharedPreferences.edit();
+                     editor.putBoolean("savepass", loginsave);
+                     editor.apply();
+                }
+            }
+        });
+
+//
 
 
         SignUpText.setOnClickListener(new View.OnClickListener() {

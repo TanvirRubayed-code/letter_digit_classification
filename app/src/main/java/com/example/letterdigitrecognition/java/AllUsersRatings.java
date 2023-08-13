@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.letterdigitrecognition.R;
@@ -18,10 +20,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class AllUsersRatings extends AppCompatActivity {
 
@@ -30,13 +34,20 @@ public class AllUsersRatings extends AppCompatActivity {
     AllRatings_adapter ratings_adapter;
     List<AllRatings_model> all_ratings;
 
+    TextView averageRating ;
 
+    int totaluser = 0 ;
+    float totalRating = 0;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_users_ratings);
 
         allratingsRV = findViewById(R.id.all_ratings_RV);
+
+        averageRating = findViewById(R.id.averagerate);
 
         fetchAllRatingData();
 
@@ -97,9 +108,12 @@ public class AllUsersRatings extends AppCompatActivity {
         all_ratings = new ArrayList<>();
         for(int i=0;i<allRatings.size();i++){
             HashMap rating = (HashMap) allRatings.get(i);
+            totaluser++;
+            totalRating += Float.parseFloat((String) Objects.requireNonNull(rating.get("rating")));
             all_ratings.add(new AllRatings_model((String) rating.get("name"), (String) rating.get("rating")));
         }
-
+        DecimalFormat dec = new DecimalFormat("#0.00");
+        averageRating.setText(String.valueOf(dec.format(totalRating/totaluser)));
     }
 
     @Override

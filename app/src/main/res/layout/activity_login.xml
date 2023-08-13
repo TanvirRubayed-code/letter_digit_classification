@@ -123,14 +123,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+<!--                <CheckBox-->
+<!--                    android:id="@+id/login_checkbox"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="left"-->
+<!--                    android:buttonTint="@color/black"-->
+<!--                    android:text="Show password"-->
+<!--                    android:textColor="@color/black" />-->
+
                 <CheckBox
-                    android:id="@+id/login_checkbox"
+                    android:id="@+id/save_pass_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:buttonTint="@color/black"
-                    android:text="Show password"
-                    android:textColor="@color/black"></CheckBox>
+                    android:text="Save password"
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 

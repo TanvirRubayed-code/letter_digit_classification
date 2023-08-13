@@ -8,6 +8,9 @@
     android:background="@color/statusbar"
     tools:context=".java.AllUsersRatings">
 
+
+
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,6 +29,48 @@
 
 
     </com.google.android.material.appbar.AppBarLayout>
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:backgroundTint="#FFAB91"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="32sp"
+                    android:text="Average Rating"
+                    android:textStyle="bold"
+                    android:layout_marginTop="20dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/statusbar"
+                    />
+
+                <TextView
+                    android:id="@+id/averagerate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="20dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/statusbar"
+                    />
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/all_ratings_RV"
